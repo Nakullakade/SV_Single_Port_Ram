@@ -1,0 +1,1101 @@
+QuestaSim-64 qrun 2024.3_1 Utility 2024.10 Oct 17 2024
+Start time: 10:12:44 on Jan 11,2025
+qrun -batch -access=rw+/. -timescale 1ns/1ns -mfcu design.sv testbench.sv -voptargs="+acc=npr" -do " run -all; exit" 
+Creating library 'qrun.out/work'.
+QuestaSim-64 vlog 2024.3_1 Compiler 2024.10 Oct 17 2024
+Start time: 10:12:44 on Jan 11,2025
+vlog -timescale 1ns/1ns -mfcu design.sv testbench.sv -work qrun.out/work -statslog qrun.out/stats_log -writesessionid "+qrun.out/top_dus" -csession=incr 
+-- Compiling module single_port_ram
+-- Compiling interface s_interface
+-- Compiling package s_package
+** Warning: ** while parsing file included at testbench.sv(2)
+** while parsing file included at test_top.sv(1)
+** at generator.sv(49): (vlog-2240) Treating stand-alone use of function 'randomize' as an implicit VOID cast.
+** Warning: ** while parsing file included at testbench.sv(2)
+** while parsing file included at test_top.sv(1)
+** at generator.sv(80): (vlog-2240) Treating stand-alone use of function 'randomize' as an implicit VOID cast.
+** Warning: ** while parsing file included at testbench.sv(2)
+** while parsing file included at test_top.sv(1)
+** at generator.sv(113): (vlog-2240) Treating stand-alone use of function 'randomize' as an implicit VOID cast.
+** Warning: ** while parsing file included at testbench.sv(2)
+** while parsing file included at test_top.sv(1)
+** at generator.sv(138): (vlog-2240) Treating stand-alone use of function 'randomize' as an implicit VOID cast.
+-- Compiling package design_sv_unit
+-- Importing package s_package
+-- Compiling program test_top
+-- Compiling module tb_top
+
+Top level modules:
+	tb_top
+End time: 10:12:44 on Jan 11,2025, Elapsed time: 0:00:00
+Errors: 0, Warnings: 4
+QuestaSim-64 vopt 2024.3_1 Compiler 2024.10 Oct 17 2024
+** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+Start time: 10:12:44 on Jan 11,2025
+vopt -access=rw+/. -timescale 1ns/1ns -mfcu "+acc=npr" -findtoplevels qrun.out/work+1+ -work qrun.out/work -statslog qrun.out/stats_log -csession=incr -o qrun_opt -csessionid=2 
+
+Top level modules:
+	tb_top
+
+Analyzing design...
+-- Loading module tb_top
+-- Loading interface s_interface
+-- Loading module single_port_ram
+-- Loading program test_top
+Optimizing 7 design-units (inlining 0/4 module instances):
+-- Optimizing package s_package(fast)
+** Warning: generator.sv(49): (vopt-2240) Treating stand-alone use of function 'randomize' as an implicit VOID cast.
+** Warning: generator.sv(80): (vopt-2240) Treating stand-alone use of function 'randomize' as an implicit VOID cast.
+** Warning: generator.sv(113): (vopt-2240) Treating stand-alone use of function 'randomize' as an implicit VOID cast.
+** Warning: generator.sv(138): (vopt-2240) Treating stand-alone use of function 'randomize' as an implicit VOID cast.
+-- Optimizing package design_sv_unit(fast)
+-- Optimizing module tb_top(fast)
+-- Optimizing module single_port_ram(fast)
+-- Optimizing program test_top(fast)
+-- Optimizing interface s_interface(fast__2)
+-- Optimizing interface s_interface(fast)
+Optimized design name is qrun_opt
+End time: 10:12:45 on Jan 11,2025, Elapsed time: 0:00:01
+Errors: 0, Warnings: 5
+# vsim -batch -lib qrun.out/work -do " run -all; exit" -statslog qrun.out/stats_log qrun_opt -appendlog -l qrun.log 
+# Start time: 10:12:45 on Jan 11,2025
+# //  Questa Sim-64
+# //  Version 2024.3_1 linux_x86_64 Oct 17 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading sv_std.std
+# Loading work.s_interface(fast)
+# Loading work.s_package(fast)
+# Loading work.design_sv_unit(fast)
+# Loading work.tb_top(fast)
+# Loading work.s_interface(fast__2)
+# Loading work.single_port_ram(fast)
+# Loading work.test_top(fast)
+# 
+# run -all
+# inside tb_top
+# inside test_top
+# inside test
+# inside environment
+# inside cov collector
+# inside gen build
+# nothing inside driver build
+# inside ip mon build
+# inside op mon build
+# nothing inside scoreboard build
+# coverage collector build
+# gen single write successful '{data_in:10, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# gen single read successful '{data_in:10, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:0}
+# series write mailbox numbers are 18
+# series read mailbox numbers are 34
+# random write array is '{1, 12, 11, 4, 3, 8, 9, 5, 12, 11, 8, 9, 1, 3, 13, 10} mailbox numbers are 50
+# random read array is '{8, 12, 13, 3, 9, 12, 9, 10, 8, 4, 3, 1, 5, 11, 1, 11} mailbox numbers are 66
+# alternate w & r mailbox numbers are 98
+# packet at driver is '{data_in:10, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# test cases failed !! pass count=0 and fail count=0
+# packet at driver is '{data_in:10, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:10, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:10, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip data at score is '{data_in:10, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{1:10 } and size is 1
+# packet at driver is '{data_in:191, address_in:0, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:10}
+# packet received from op mon to coverage is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:10}
+# functional coverage using get coverage is 33
+# functional coverage using get instant coverage is 33
+# op data at score is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:10}
+# op associate array is '{1:10 } and size is 1
+# addr = 1
+# time: 20 ns, data matched !! exp=10 act=10
+#  
+# packet at driver is '{data_in:82, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:191, address_in:0, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:191, address_in:0, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip data at score is '{data_in:191, address_in:0, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:10 } and size is 2
+# packet at driver is '{data_in:104, address_in:2, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:82, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:82, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:82 } and size is 2
+# packet at driver is '{data_in:23, address_in:3, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:104, address_in:2, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:104, address_in:2, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:82, 2:104 } and size is 3
+# packet at driver is '{data_in:98, address_in:4, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:23, address_in:3, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:23, address_in:3, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:82, 2:104, 3:23 } and size is 4
+# packet at driver is '{data_in:137, address_in:5, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:98, address_in:4, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:98, address_in:4, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:82, 2:104, 3:23, 4:98 } and size is 5
+# packet at driver is '{data_in:138, address_in:6, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:137, address_in:5, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:137, address_in:5, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:82, 2:104, 3:23, 4:98, 5:137 } and size is 6
+# packet at driver is '{data_in:37, address_in:7, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:138, address_in:6, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:138, address_in:6, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:82, 2:104, 3:23, 4:98, 5:137, 6:138 } and size is 7
+# packet at driver is '{data_in:209, address_in:8, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:37, address_in:7, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:37, address_in:7, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:82, 2:104, 3:23, 4:98, 5:137, 6:138, 7:37 } and size is 8
+# packet at driver is '{data_in:91, address_in:9, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:209, address_in:8, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:209, address_in:8, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:82, 2:104, 3:23, 4:98, 5:137, 6:138, 7:37, 8:209 } and size is 9
+# packet at driver is '{data_in:0, address_in:10, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:91, address_in:9, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:91, address_in:9, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:82, 2:104, 3:23, 4:98, 5:137, 6:138, 7:37, 8:209, 9:91 } and size is 10
+# packet at driver is '{data_in:10, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:0, address_in:10, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:0, address_in:10, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:82, 2:104, 3:23, 4:98, 5:137, 6:138, 7:37, 8:209, 9:91, 10:0 } and size is 11
+# packet at driver is '{data_in:13, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:10, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:10, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:82, 2:104, 3:23, 4:98, 5:137, 6:138, 7:37, 8:209, 9:91, 10:0, 11:10 } and size is 12
+# packet at driver is '{data_in:199, address_in:13, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:13, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:13, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:82, 2:104, 3:23, 4:98, 5:137, 6:138, 7:37, 8:209, 9:91, 10:0, 11:10, 12:13 } and size is 13
+# packet at driver is '{data_in:41, address_in:14, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:199, address_in:13, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:199, address_in:13, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:82, 2:104, 3:23, 4:98, 5:137, 6:138, 7:37, 8:209, 9:91, 10:0, 11:10, 12:13, 13:199 } and size is 14
+# packet at driver is '{data_in:128, address_in:15, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:41, address_in:14, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:41, address_in:14, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:82, 2:104, 3:23, 4:98, 5:137, 6:138, 7:37, 8:209, 9:91, 10:0, 11:10, 12:13, 13:199, 14:41 } and size is 15
+# packet at driver is '{data_in:0, address_in:0, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:128, address_in:15, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:128, address_in:15, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:82, 2:104, 3:23, 4:98, 5:137, 6:138, 7:37, 8:209, 9:91, 10:0, 11:10, 12:13, 13:199, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:0, wr_en:0, rd_en:1, cs:1, data_out:191}
+# packet received from op mon to coverage is '{data_in:0, address_in:0, wr_en:0, rd_en:1, cs:1, data_out:191}
+# functional coverage using get coverage is 37
+# functional coverage using get instant coverage is 37
+# packet received from ip mon to coverage is '{data_in:82, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:0, wr_en:0, rd_en:1, cs:1, data_out:191}
+# op associate array is '{0:191, 1:10 } and size is 2
+# addr = 0
+# time: 190 ns, data matched !! exp=191 act=191
+#  
+# packet at driver is '{data_in:0, address_in:2, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:82}
+# packet received from op mon to coverage is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:82}
+# functional coverage using get coverage is 39
+# functional coverage using get instant coverage is 39
+# packet received from ip mon to coverage is '{data_in:104, address_in:2, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:82}
+# op associate array is '{0:191, 1:82 } and size is 2
+# addr = 1
+# time: 200 ns, data matched !! exp=82 act=82
+#  
+# packet at driver is '{data_in:0, address_in:3, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:2, wr_en:0, rd_en:1, cs:1, data_out:104}
+# packet received from op mon to coverage is '{data_in:0, address_in:2, wr_en:0, rd_en:1, cs:1, data_out:104}
+# functional coverage using get coverage is 42
+# functional coverage using get instant coverage is 42
+# packet received from ip mon to coverage is '{data_in:23, address_in:3, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:2, wr_en:0, rd_en:1, cs:1, data_out:104}
+# op associate array is '{0:191, 1:82, 2:104 } and size is 3
+# addr = 2
+# time: 210 ns, data matched !! exp=104 act=104
+#  
+# packet at driver is '{data_in:0, address_in:4, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:3, wr_en:0, rd_en:1, cs:1, data_out:0}
+# packet received from op mon to coverage is '{data_in:0, address_in:3, wr_en:0, rd_en:1, cs:1, data_out:0}
+# functional coverage using get coverage is 43
+# functional coverage using get instant coverage is 43
+# packet received from ip mon to coverage is '{data_in:98, address_in:4, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:3, wr_en:0, rd_en:1, cs:1, data_out:0}
+# op associate array is '{0:191, 1:82, 2:104, 3:0 } and size is 4
+# addr = 3
+# time: 220 ns, data not matched !! exp=23 act=0
+#  
+# packet at driver is '{data_in:0, address_in:5, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:4, wr_en:0, rd_en:1, cs:1, data_out:98}
+# packet received from op mon to coverage is '{data_in:0, address_in:4, wr_en:0, rd_en:1, cs:1, data_out:98}
+# functional coverage using get coverage is 44
+# functional coverage using get instant coverage is 44
+# packet received from ip mon to coverage is '{data_in:137, address_in:5, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:4, wr_en:0, rd_en:1, cs:1, data_out:98}
+# op associate array is '{0:191, 1:82, 2:104, 3:0, 4:98 } and size is 5
+# addr = 4
+# time: 230 ns, data matched !! exp=98 act=98
+#  
+# packet at driver is '{data_in:0, address_in:6, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:5, wr_en:0, rd_en:1, cs:1, data_out:137}
+# packet received from op mon to coverage is '{data_in:0, address_in:5, wr_en:0, rd_en:1, cs:1, data_out:137}
+# functional coverage using get coverage is 48
+# functional coverage using get instant coverage is 48
+# packet received from ip mon to coverage is '{data_in:138, address_in:6, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:5, wr_en:0, rd_en:1, cs:1, data_out:137}
+# op associate array is '{0:191, 1:82, 2:104, 3:0, 4:98, 5:137 } and size is 6
+# addr = 5
+# time: 240 ns, data matched !! exp=137 act=137
+#  
+# packet at driver is '{data_in:0, address_in:7, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:6, wr_en:0, rd_en:1, cs:1, data_out:138}
+# packet received from op mon to coverage is '{data_in:0, address_in:6, wr_en:0, rd_en:1, cs:1, data_out:138}
+# functional coverage using get coverage is 49
+# functional coverage using get instant coverage is 49
+# packet received from ip mon to coverage is '{data_in:37, address_in:7, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:6, wr_en:0, rd_en:1, cs:1, data_out:138}
+# op associate array is '{0:191, 1:82, 2:104, 3:0, 4:98, 5:137, 6:138 } and size is 7
+# addr = 6
+# time: 250 ns, data matched !! exp=138 act=138
+#  
+# packet at driver is '{data_in:0, address_in:8, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:7, wr_en:0, rd_en:1, cs:1, data_out:37}
+# packet received from op mon to coverage is '{data_in:0, address_in:7, wr_en:0, rd_en:1, cs:1, data_out:37}
+# functional coverage using get coverage is 52
+# functional coverage using get instant coverage is 52
+# packet received from ip mon to coverage is '{data_in:209, address_in:8, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:7, wr_en:0, rd_en:1, cs:1, data_out:37}
+# op associate array is '{0:191, 1:82, 2:104, 3:0, 4:98, 5:137, 6:138, 7:37 } and size is 8
+# addr = 7
+# time: 260 ns, data matched !! exp=37 act=37
+#  
+# packet at driver is '{data_in:0, address_in:9, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:8, wr_en:0, rd_en:1, cs:1, data_out:209}
+# packet received from op mon to coverage is '{data_in:0, address_in:8, wr_en:0, rd_en:1, cs:1, data_out:209}
+# functional coverage using get coverage is 55
+# functional coverage using get instant coverage is 55
+# packet received from ip mon to coverage is '{data_in:91, address_in:9, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:8, wr_en:0, rd_en:1, cs:1, data_out:209}
+# op associate array is '{0:191, 1:82, 2:104, 3:0, 4:98, 5:137, 6:138, 7:37, 8:209 } and size is 9
+# addr = 8
+# time: 270 ns, data matched !! exp=209 act=209
+#  
+# packet at driver is '{data_in:0, address_in:10, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:9, wr_en:0, rd_en:1, cs:1, data_out:91}
+# packet received from op mon to coverage is '{data_in:0, address_in:9, wr_en:0, rd_en:1, cs:1, data_out:91}
+# functional coverage using get coverage is 57
+# functional coverage using get instant coverage is 57
+# packet received from ip mon to coverage is '{data_in:0, address_in:10, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:9, wr_en:0, rd_en:1, cs:1, data_out:91}
+# op associate array is '{0:191, 1:82, 2:104, 3:0, 4:98, 5:137, 6:138, 7:37, 8:209, 9:91 } and size is 10
+# addr = 9
+# time: 280 ns, data matched !! exp=91 act=91
+#  
+# packet at driver is '{data_in:0, address_in:11, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:10, wr_en:0, rd_en:1, cs:1, data_out:0}
+# packet received from op mon to coverage is '{data_in:0, address_in:10, wr_en:0, rd_en:1, cs:1, data_out:0}
+# functional coverage using get coverage is 58
+# functional coverage using get instant coverage is 58
+# packet received from ip mon to coverage is '{data_in:10, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:10, wr_en:0, rd_en:1, cs:1, data_out:0}
+# op associate array is '{0:191, 1:82, 2:104, 3:0, 4:98, 5:137, 6:138, 7:37, 8:209, 9:91, 10:0 } and size is 11
+# addr = 10
+# time: 290 ns, data matched !! exp=0 act=0
+#  
+# packet at driver is '{data_in:0, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:11, wr_en:0, rd_en:1, cs:1, data_out:10}
+# packet received from op mon to coverage is '{data_in:0, address_in:11, wr_en:0, rd_en:1, cs:1, data_out:10}
+# functional coverage using get coverage is 59
+# functional coverage using get instant coverage is 59
+# packet received from ip mon to coverage is '{data_in:13, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:11, wr_en:0, rd_en:1, cs:1, data_out:10}
+# op associate array is '{0:191, 1:82, 2:104, 3:0, 4:98, 5:137, 6:138, 7:37, 8:209, 9:91, 10:0, 11:10 } and size is 12
+# addr = 11
+# time: 300 ns, data matched !! exp=10 act=10
+#  
+# packet at driver is '{data_in:0, address_in:13, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:13}
+# packet received from op mon to coverage is '{data_in:0, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:13}
+# functional coverage using get coverage is 60
+# functional coverage using get instant coverage is 60
+# packet received from ip mon to coverage is '{data_in:199, address_in:13, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:13}
+# op associate array is '{0:191, 1:82, 2:104, 3:0, 4:98, 5:137, 6:138, 7:37, 8:209, 9:91, 10:0, 11:10, 12:13 } and size is 13
+# addr = 12
+# time: 310 ns, data matched !! exp=13 act=13
+#  
+# packet at driver is '{data_in:0, address_in:14, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:13, wr_en:0, rd_en:1, cs:1, data_out:199}
+# packet received from op mon to coverage is '{data_in:0, address_in:13, wr_en:0, rd_en:1, cs:1, data_out:199}
+# functional coverage using get coverage is 62
+# functional coverage using get instant coverage is 62
+# packet received from ip mon to coverage is '{data_in:41, address_in:14, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:13, wr_en:0, rd_en:1, cs:1, data_out:199}
+# op associate array is '{0:191, 1:82, 2:104, 3:0, 4:98, 5:137, 6:138, 7:37, 8:209, 9:91, 10:0, 11:10, 12:13, 13:199 } and size is 14
+# addr = 13
+# time: 320 ns, data matched !! exp=199 act=199
+#  
+# packet at driver is '{data_in:0, address_in:15, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:14, wr_en:0, rd_en:1, cs:1, data_out:41}
+# packet received from op mon to coverage is '{data_in:0, address_in:14, wr_en:0, rd_en:1, cs:1, data_out:41}
+# functional coverage using get coverage is 63
+# functional coverage using get instant coverage is 63
+# packet received from ip mon to coverage is '{data_in:128, address_in:15, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:14, wr_en:0, rd_en:1, cs:1, data_out:41}
+# op associate array is '{0:191, 1:82, 2:104, 3:0, 4:98, 5:137, 6:138, 7:37, 8:209, 9:91, 10:0, 11:10, 12:13, 13:199, 14:41 } and size is 15
+# addr = 14
+# time: 330 ns, data matched !! exp=41 act=41
+#  
+# packet at driver is '{data_in:186, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:15, wr_en:0, rd_en:1, cs:1, data_out:128}
+# packet received from op mon to coverage is '{data_in:0, address_in:15, wr_en:0, rd_en:1, cs:1, data_out:128}
+# functional coverage using get coverage is 64
+# functional coverage using get instant coverage is 64
+# op data at score is '{data_in:0, address_in:15, wr_en:0, rd_en:1, cs:1, data_out:128}
+# op associate array is '{0:191, 1:82, 2:104, 3:0, 4:98, 5:137, 6:138, 7:37, 8:209, 9:91, 10:0, 11:10, 12:13, 13:199, 14:41, 15:128 } and size is 16
+# addr = 15
+# time: 340 ns, data matched !! exp=128 act=128
+#  
+# packet at driver is '{data_in:41, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:186, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:186, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip data at score is '{data_in:186, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:186, 2:104, 3:23, 4:98, 5:137, 6:138, 7:37, 8:209, 9:91, 10:0, 11:10, 12:13, 13:199, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:245, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:41, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:41, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:186, 2:104, 3:23, 4:98, 5:137, 6:138, 7:37, 8:209, 9:91, 10:0, 11:10, 12:41, 13:199, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:99, address_in:4, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:245, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:245, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:186, 2:104, 3:23, 4:98, 5:137, 6:138, 7:37, 8:209, 9:91, 10:0, 11:245, 12:41, 13:199, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:91, address_in:3, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:99, address_in:4, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:99, address_in:4, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:186, 2:104, 3:23, 4:99, 5:137, 6:138, 7:37, 8:209, 9:91, 10:0, 11:245, 12:41, 13:199, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:84, address_in:8, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:91, address_in:3, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:91, address_in:3, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:186, 2:104, 3:91, 4:99, 5:137, 6:138, 7:37, 8:209, 9:91, 10:0, 11:245, 12:41, 13:199, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:111, address_in:9, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:84, address_in:8, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:84, address_in:8, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:186, 2:104, 3:91, 4:99, 5:137, 6:138, 7:37, 8:84, 9:91, 10:0, 11:245, 12:41, 13:199, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:253, address_in:5, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:111, address_in:9, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:111, address_in:9, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:186, 2:104, 3:91, 4:99, 5:137, 6:138, 7:37, 8:84, 9:111, 10:0, 11:245, 12:41, 13:199, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:54, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:253, address_in:5, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:253, address_in:5, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:186, 2:104, 3:91, 4:99, 5:253, 6:138, 7:37, 8:84, 9:111, 10:0, 11:245, 12:41, 13:199, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:36, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:54, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:54, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:186, 2:104, 3:91, 4:99, 5:253, 6:138, 7:37, 8:84, 9:111, 10:0, 11:245, 12:54, 13:199, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:41, address_in:8, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:36, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:36, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:186, 2:104, 3:91, 4:99, 5:253, 6:138, 7:37, 8:84, 9:111, 10:0, 11:36, 12:54, 13:199, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:253, address_in:9, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:41, address_in:8, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:41, address_in:8, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:186, 2:104, 3:91, 4:99, 5:253, 6:138, 7:37, 8:41, 9:111, 10:0, 11:36, 12:54, 13:199, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:166, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:253, address_in:9, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:253, address_in:9, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:186, 2:104, 3:91, 4:99, 5:253, 6:138, 7:37, 8:41, 9:253, 10:0, 11:36, 12:54, 13:199, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:197, address_in:3, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:166, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:166, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:166, 2:104, 3:91, 4:99, 5:253, 6:138, 7:37, 8:41, 9:253, 10:0, 11:36, 12:54, 13:199, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:70, address_in:13, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:197, address_in:3, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:197, address_in:3, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:166, 2:104, 3:197, 4:99, 5:253, 6:138, 7:37, 8:41, 9:253, 10:0, 11:36, 12:54, 13:199, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:129, address_in:10, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:70, address_in:13, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:70, address_in:13, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:166, 2:104, 3:197, 4:99, 5:253, 6:138, 7:37, 8:41, 9:253, 10:0, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:0, address_in:8, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:129, address_in:10, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# ip data at score is '{data_in:129, address_in:10, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:191, 1:166, 2:104, 3:197, 4:99, 5:253, 6:138, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:0, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:8, wr_en:0, rd_en:1, cs:1, data_out:41}
+# packet received from op mon to coverage is '{data_in:0, address_in:8, wr_en:0, rd_en:1, cs:1, data_out:41}
+# functional coverage using get coverage is 64
+# functional coverage using get instant coverage is 64
+# packet received from ip mon to coverage is '{data_in:41, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:8, wr_en:0, rd_en:1, cs:1, data_out:41}
+# op associate array is '{0:191, 1:82, 2:104, 3:0, 4:98, 5:137, 6:138, 7:37, 8:41, 9:91, 10:0, 11:10, 12:13, 13:199, 14:41, 15:128 } and size is 16
+# addr = 8
+# time: 510 ns, data matched !! exp=41 act=41
+#  
+# packet at driver is '{data_in:0, address_in:13, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:54}
+# packet received from op mon to coverage is '{data_in:0, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:54}
+# functional coverage using get coverage is 65
+# functional coverage using get instant coverage is 65
+# packet received from ip mon to coverage is '{data_in:245, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:54}
+# op associate array is '{0:191, 1:82, 2:104, 3:0, 4:98, 5:137, 6:138, 7:37, 8:41, 9:91, 10:0, 11:10, 12:54, 13:199, 14:41, 15:128 } and size is 16
+# addr = 12
+# time: 520 ns, data matched !! exp=54 act=54
+#  
+# packet at driver is '{data_in:0, address_in:3, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:13, wr_en:0, rd_en:1, cs:1, data_out:70}
+# packet received from op mon to coverage is '{data_in:0, address_in:13, wr_en:0, rd_en:1, cs:1, data_out:70}
+# functional coverage using get coverage is 66
+# functional coverage using get instant coverage is 66
+# packet received from ip mon to coverage is '{data_in:99, address_in:4, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:13, wr_en:0, rd_en:1, cs:1, data_out:70}
+# op associate array is '{0:191, 1:82, 2:104, 3:0, 4:98, 5:137, 6:138, 7:37, 8:41, 9:91, 10:0, 11:10, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 13
+# time: 530 ns, data matched !! exp=70 act=70
+#  
+# packet at driver is '{data_in:0, address_in:9, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:3, wr_en:0, rd_en:1, cs:1, data_out:197}
+# packet received from op mon to coverage is '{data_in:0, address_in:3, wr_en:0, rd_en:1, cs:1, data_out:197}
+# functional coverage using get coverage is 66
+# functional coverage using get instant coverage is 66
+# packet received from ip mon to coverage is '{data_in:91, address_in:3, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:3, wr_en:0, rd_en:1, cs:1, data_out:197}
+# op associate array is '{0:191, 1:82, 2:104, 3:197, 4:98, 5:137, 6:138, 7:37, 8:41, 9:91, 10:0, 11:10, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 3
+# time: 540 ns, data matched !! exp=197 act=197
+#  
+# packet at driver is '{data_in:0, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:9, wr_en:0, rd_en:1, cs:1, data_out:253}
+# packet received from op mon to coverage is '{data_in:0, address_in:9, wr_en:0, rd_en:1, cs:1, data_out:253}
+# functional coverage using get coverage is 67
+# functional coverage using get instant coverage is 67
+# packet received from ip mon to coverage is '{data_in:84, address_in:8, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:9, wr_en:0, rd_en:1, cs:1, data_out:253}
+# op associate array is '{0:191, 1:82, 2:104, 3:197, 4:98, 5:137, 6:138, 7:37, 8:41, 9:253, 10:0, 11:10, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 9
+# time: 550 ns, data matched !! exp=253 act=253
+#  
+# packet at driver is '{data_in:0, address_in:9, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:54}
+# packet received from op mon to coverage is '{data_in:0, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:54}
+# functional coverage using get coverage is 67
+# functional coverage using get instant coverage is 67
+# packet received from ip mon to coverage is '{data_in:111, address_in:9, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:54}
+# op associate array is '{0:191, 1:82, 2:104, 3:197, 4:98, 5:137, 6:138, 7:37, 8:41, 9:253, 10:0, 11:10, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 12
+# time: 560 ns, data matched !! exp=54 act=54
+#  
+# packet at driver is '{data_in:0, address_in:10, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:9, wr_en:0, rd_en:1, cs:1, data_out:253}
+# packet received from op mon to coverage is '{data_in:0, address_in:9, wr_en:0, rd_en:1, cs:1, data_out:253}
+# functional coverage using get coverage is 67
+# functional coverage using get instant coverage is 67
+# packet received from ip mon to coverage is '{data_in:253, address_in:5, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:9, wr_en:0, rd_en:1, cs:1, data_out:253}
+# op associate array is '{0:191, 1:82, 2:104, 3:197, 4:98, 5:137, 6:138, 7:37, 8:41, 9:253, 10:0, 11:10, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 9
+# time: 570 ns, data matched !! exp=253 act=253
+#  
+# packet at driver is '{data_in:0, address_in:8, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:10, wr_en:0, rd_en:1, cs:1, data_out:129}
+# packet received from op mon to coverage is '{data_in:0, address_in:10, wr_en:0, rd_en:1, cs:1, data_out:129}
+# functional coverage using get coverage is 67
+# functional coverage using get instant coverage is 67
+# packet received from ip mon to coverage is '{data_in:54, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:10, wr_en:0, rd_en:1, cs:1, data_out:129}
+# op associate array is '{0:191, 1:82, 2:104, 3:197, 4:98, 5:137, 6:138, 7:37, 8:41, 9:253, 10:129, 11:10, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 10
+# time: 580 ns, data matched !! exp=129 act=129
+#  
+# packet at driver is '{data_in:0, address_in:4, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:8, wr_en:0, rd_en:1, cs:1, data_out:41}
+# packet received from op mon to coverage is '{data_in:0, address_in:8, wr_en:0, rd_en:1, cs:1, data_out:41}
+# functional coverage using get coverage is 68
+# functional coverage using get instant coverage is 68
+# packet received from ip mon to coverage is '{data_in:36, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:8, wr_en:0, rd_en:1, cs:1, data_out:41}
+# op associate array is '{0:191, 1:82, 2:104, 3:197, 4:98, 5:137, 6:138, 7:37, 8:41, 9:253, 10:129, 11:10, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 8
+# time: 590 ns, data matched !! exp=41 act=41
+#  
+# packet at driver is '{data_in:0, address_in:3, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:4, wr_en:0, rd_en:1, cs:1, data_out:99}
+# packet received from op mon to coverage is '{data_in:0, address_in:4, wr_en:0, rd_en:1, cs:1, data_out:99}
+# functional coverage using get coverage is 68
+# functional coverage using get instant coverage is 68
+# packet received from ip mon to coverage is '{data_in:41, address_in:8, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:4, wr_en:0, rd_en:1, cs:1, data_out:99}
+# op associate array is '{0:191, 1:82, 2:104, 3:197, 4:99, 5:137, 6:138, 7:37, 8:41, 9:253, 10:129, 11:10, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 4
+# time: 600 ns, data matched !! exp=99 act=99
+#  
+# packet at driver is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:3, wr_en:0, rd_en:1, cs:1, data_out:197}
+# packet received from op mon to coverage is '{data_in:0, address_in:3, wr_en:0, rd_en:1, cs:1, data_out:197}
+# functional coverage using get coverage is 68
+# functional coverage using get instant coverage is 68
+# packet received from ip mon to coverage is '{data_in:253, address_in:9, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:3, wr_en:0, rd_en:1, cs:1, data_out:197}
+# op associate array is '{0:191, 1:82, 2:104, 3:197, 4:99, 5:137, 6:138, 7:37, 8:41, 9:253, 10:129, 11:10, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 3
+# time: 610 ns, data matched !! exp=197 act=197
+#  
+# packet at driver is '{data_in:0, address_in:5, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:166}
+# packet received from op mon to coverage is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:166}
+# functional coverage using get coverage is 69
+# functional coverage using get instant coverage is 69
+# packet received from ip mon to coverage is '{data_in:166, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:166}
+# op associate array is '{0:191, 1:166, 2:104, 3:197, 4:99, 5:137, 6:138, 7:37, 8:41, 9:253, 10:129, 11:10, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 1
+# time: 620 ns, data matched !! exp=166 act=166
+#  
+# packet at driver is '{data_in:0, address_in:11, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:5, wr_en:0, rd_en:1, cs:1, data_out:253}
+# packet received from op mon to coverage is '{data_in:0, address_in:5, wr_en:0, rd_en:1, cs:1, data_out:253}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# packet received from ip mon to coverage is '{data_in:197, address_in:3, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:5, wr_en:0, rd_en:1, cs:1, data_out:253}
+# op associate array is '{0:191, 1:166, 2:104, 3:197, 4:99, 5:253, 6:138, 7:37, 8:41, 9:253, 10:129, 11:10, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 5
+# time: 630 ns, data matched !! exp=253 act=253
+#  
+# packet at driver is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:11, wr_en:0, rd_en:1, cs:1, data_out:36}
+# packet received from op mon to coverage is '{data_in:0, address_in:11, wr_en:0, rd_en:1, cs:1, data_out:36}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# packet received from ip mon to coverage is '{data_in:70, address_in:13, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:11, wr_en:0, rd_en:1, cs:1, data_out:36}
+# op associate array is '{0:191, 1:166, 2:104, 3:197, 4:99, 5:253, 6:138, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 11
+# time: 640 ns, data matched !! exp=36 act=36
+#  
+# packet at driver is '{data_in:0, address_in:11, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:166}
+# packet received from op mon to coverage is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:166}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# packet received from ip mon to coverage is '{data_in:129, address_in:10, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op data at score is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:166}
+# op associate array is '{0:191, 1:166, 2:104, 3:197, 4:99, 5:253, 6:138, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 1
+# time: 650 ns, data matched !! exp=166 act=166
+#  
+# packet at driver is '{data_in:230, address_in:0, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:11, wr_en:0, rd_en:1, cs:1, data_out:36}
+# packet received from op mon to coverage is '{data_in:0, address_in:11, wr_en:0, rd_en:1, cs:1, data_out:36}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# op data at score is '{data_in:0, address_in:11, wr_en:0, rd_en:1, cs:1, data_out:36}
+# op associate array is '{0:191, 1:166, 2:104, 3:197, 4:99, 5:253, 6:138, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 11
+# time: 660 ns, data matched !! exp=36 act=36
+#  
+# packet at driver is '{data_in:0, address_in:0, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:230, address_in:0, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:230, address_in:0, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip data at score is '{data_in:230, address_in:0, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:166, 2:104, 3:197, 4:99, 5:253, 6:138, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:47, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:0, wr_en:0, rd_en:1, cs:1, data_out:230}
+# packet received from op mon to coverage is '{data_in:0, address_in:0, wr_en:0, rd_en:1, cs:1, data_out:230}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# op data at score is '{data_in:0, address_in:0, wr_en:0, rd_en:1, cs:1, data_out:230}
+# op associate array is '{0:230, 1:166, 2:104, 3:197, 4:99, 5:253, 6:138, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 0
+# time: 680 ns, data matched !! exp=230 act=230
+#  
+# packet at driver is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:47, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:47, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip data at score is '{data_in:47, address_in:1, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:47, 2:104, 3:197, 4:99, 5:253, 6:138, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:216, address_in:2, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:47}
+# packet received from op mon to coverage is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:47}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# op data at score is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:47}
+# op associate array is '{0:230, 1:47, 2:104, 3:197, 4:99, 5:253, 6:138, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 1
+# time: 700 ns, data matched !! exp=47 act=47
+#  
+# packet at driver is '{data_in:0, address_in:2, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:216, address_in:2, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:216, address_in:2, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip data at score is '{data_in:216, address_in:2, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:47, 2:216, 3:197, 4:99, 5:253, 6:138, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:138, address_in:3, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:2, wr_en:0, rd_en:1, cs:1, data_out:216}
+# packet received from op mon to coverage is '{data_in:0, address_in:2, wr_en:0, rd_en:1, cs:1, data_out:216}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# op data at score is '{data_in:0, address_in:2, wr_en:0, rd_en:1, cs:1, data_out:216}
+# op associate array is '{0:230, 1:47, 2:216, 3:197, 4:99, 5:253, 6:138, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 2
+# time: 720 ns, data matched !! exp=216 act=216
+#  
+# packet at driver is '{data_in:0, address_in:3, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:138, address_in:3, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:138, address_in:3, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip data at score is '{data_in:138, address_in:3, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:47, 2:216, 3:138, 4:99, 5:253, 6:138, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:220, address_in:4, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:3, wr_en:0, rd_en:1, cs:1, data_out:0}
+# packet received from op mon to coverage is '{data_in:0, address_in:3, wr_en:0, rd_en:1, cs:1, data_out:0}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# op data at score is '{data_in:0, address_in:3, wr_en:0, rd_en:1, cs:1, data_out:0}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:99, 5:253, 6:138, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 3
+# time: 740 ns, data not matched !! exp=138 act=0
+#  
+# packet at driver is '{data_in:0, address_in:4, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:220, address_in:4, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:220, address_in:4, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip data at score is '{data_in:220, address_in:4, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:47, 2:216, 3:138, 4:220, 5:253, 6:138, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:57, address_in:5, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:4, wr_en:0, rd_en:1, cs:1, data_out:220}
+# packet received from op mon to coverage is '{data_in:0, address_in:4, wr_en:0, rd_en:1, cs:1, data_out:220}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# op data at score is '{data_in:0, address_in:4, wr_en:0, rd_en:1, cs:1, data_out:220}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:220, 5:253, 6:138, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 4
+# time: 760 ns, data matched !! exp=220 act=220
+#  
+# packet at driver is '{data_in:0, address_in:5, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:57, address_in:5, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:57, address_in:5, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip data at score is '{data_in:57, address_in:5, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:47, 2:216, 3:138, 4:220, 5:57, 6:138, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:213, address_in:6, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:5, wr_en:0, rd_en:1, cs:1, data_out:57}
+# packet received from op mon to coverage is '{data_in:0, address_in:5, wr_en:0, rd_en:1, cs:1, data_out:57}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# op data at score is '{data_in:0, address_in:5, wr_en:0, rd_en:1, cs:1, data_out:57}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:220, 5:57, 6:138, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 5
+# time: 780 ns, data matched !! exp=57 act=57
+#  
+# packet at driver is '{data_in:0, address_in:6, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:213, address_in:6, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:213, address_in:6, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip data at score is '{data_in:213, address_in:6, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:47, 2:216, 3:138, 4:220, 5:57, 6:213, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:168, address_in:7, wr_en:1, rd_en:0, cs:0, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:6, wr_en:0, rd_en:1, cs:1, data_out:213}
+# packet received from op mon to coverage is '{data_in:0, address_in:6, wr_en:0, rd_en:1, cs:1, data_out:213}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# op data at score is '{data_in:0, address_in:6, wr_en:0, rd_en:1, cs:1, data_out:213}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:220, 5:57, 6:213, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 6
+# time: 800 ns, data matched !! exp=213 act=213
+#  
+# packet at driver is '{data_in:0, address_in:7, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:219, address_in:8, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:7, wr_en:0, rd_en:1, cs:1, data_out:37}
+# op data at score is '{data_in:0, address_in:7, wr_en:0, rd_en:1, cs:1, data_out:37}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:220, 5:57, 6:213, 7:37, 8:41, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 7
+# time: 820 ns, data matched !! exp=37 act=37
+#  
+# packet at driver is '{data_in:0, address_in:8, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:219, address_in:8, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:219, address_in:8, wr_en:1, rd_en:0, cs:1, data_out:0}
+# packet received from op mon to coverage is '{data_in:0, address_in:7, wr_en:0, rd_en:1, cs:1, data_out:37}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# ip data at score is '{data_in:219, address_in:8, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:47, 2:216, 3:138, 4:220, 5:57, 6:213, 7:37, 8:219, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:215, address_in:9, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:8, wr_en:0, rd_en:1, cs:1, data_out:219}
+# op data at score is '{data_in:0, address_in:8, wr_en:0, rd_en:1, cs:1, data_out:219}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:220, 5:57, 6:213, 7:37, 8:219, 9:253, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 8
+# time: 840 ns, data matched !! exp=219 act=219
+#  
+# packet at driver is '{data_in:0, address_in:9, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:215, address_in:9, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:215, address_in:9, wr_en:1, rd_en:0, cs:1, data_out:0}
+# packet received from op mon to coverage is '{data_in:0, address_in:8, wr_en:0, rd_en:1, cs:1, data_out:219}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# ip data at score is '{data_in:215, address_in:9, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:47, 2:216, 3:138, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:234, address_in:10, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:9, wr_en:0, rd_en:1, cs:1, data_out:215}
+# op data at score is '{data_in:0, address_in:9, wr_en:0, rd_en:1, cs:1, data_out:215}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:129, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 9
+# time: 860 ns, data matched !! exp=215 act=215
+#  
+# packet at driver is '{data_in:0, address_in:10, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:234, address_in:10, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:234, address_in:10, wr_en:1, rd_en:0, cs:1, data_out:0}
+# packet received from op mon to coverage is '{data_in:0, address_in:9, wr_en:0, rd_en:1, cs:1, data_out:215}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# ip data at score is '{data_in:234, address_in:10, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:47, 2:216, 3:138, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:217, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:10, wr_en:0, rd_en:1, cs:1, data_out:234}
+# op data at score is '{data_in:0, address_in:10, wr_en:0, rd_en:1, cs:1, data_out:234}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:36, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 10
+# time: 880 ns, data matched !! exp=234 act=234
+#  
+# packet at driver is '{data_in:0, address_in:11, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:217, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:217, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# packet received from op mon to coverage is '{data_in:0, address_in:10, wr_en:0, rd_en:1, cs:1, data_out:234}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# ip data at score is '{data_in:217, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:47, 2:216, 3:138, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:254, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:11, wr_en:0, rd_en:1, cs:1, data_out:217}
+# op data at score is '{data_in:0, address_in:11, wr_en:0, rd_en:1, cs:1, data_out:217}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:54, 13:70, 14:41, 15:128 } and size is 16
+# addr = 11
+# time: 900 ns, data matched !! exp=217 act=217
+#  
+# packet at driver is '{data_in:0, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:254, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:254, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# packet received from op mon to coverage is '{data_in:0, address_in:11, wr_en:0, rd_en:1, cs:1, data_out:217}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# ip data at score is '{data_in:254, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:47, 2:216, 3:138, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:254, 13:70, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:3, address_in:13, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:254}
+# op data at score is '{data_in:0, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:254}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:254, 13:70, 14:41, 15:128 } and size is 16
+# addr = 12
+# time: 920 ns, data matched !! exp=254 act=254
+#  
+# packet at driver is '{data_in:0, address_in:13, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:3, address_in:13, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:3, address_in:13, wr_en:1, rd_en:0, cs:1, data_out:0}
+# packet received from op mon to coverage is '{data_in:0, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:254}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# ip data at score is '{data_in:3, address_in:13, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:47, 2:216, 3:138, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:254, 13:3, 14:41, 15:128 } and size is 16
+# packet at driver is '{data_in:128, address_in:14, wr_en:1, rd_en:0, cs:0, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:13, wr_en:0, rd_en:1, cs:1, data_out:3}
+# op data at score is '{data_in:0, address_in:13, wr_en:0, rd_en:1, cs:1, data_out:3}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:254, 13:3, 14:41, 15:128 } and size is 16
+# addr = 13
+# time: 940 ns, data matched !! exp=3 act=3
+#  
+# packet at driver is '{data_in:0, address_in:14, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:181, address_in:15, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:14, wr_en:0, rd_en:1, cs:1, data_out:41}
+# op data at score is '{data_in:0, address_in:14, wr_en:0, rd_en:1, cs:1, data_out:41}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:254, 13:3, 14:41, 15:128 } and size is 16
+# addr = 14
+# time: 960 ns, data matched !! exp=41 act=41
+#  
+# packet at driver is '{data_in:0, address_in:15, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:181, address_in:15, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:181, address_in:15, wr_en:1, rd_en:0, cs:1, data_out:0}
+# packet received from op mon to coverage is '{data_in:0, address_in:13, wr_en:0, rd_en:1, cs:1, data_out:3}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# ip data at score is '{data_in:181, address_in:15, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:47, 2:216, 3:138, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:254, 13:3, 14:41, 15:181 } and size is 16
+# packet at driver is '{data_in:223, address_in:8, wr_en:0, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:15, wr_en:0, rd_en:1, cs:1, data_out:181}
+# op data at score is '{data_in:0, address_in:15, wr_en:0, rd_en:1, cs:1, data_out:181}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:254, 13:3, 14:41, 15:181 } and size is 16
+# addr = 15
+# time: 980 ns, data matched !! exp=181 act=181
+#  
+# packet at driver is '{data_in:152, address_in:7, wr_en:1, rd_en:0, cs:0, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:45, address_in:1, wr_en:0, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:112, address_in:13, wr_en:1, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:96, address_in:1, wr_en:0, rd_en:0, cs:0, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:164, address_in:9, wr_en:1, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:109, address_in:8, wr_en:1, rd_en:0, cs:0, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:150, address_in:7, wr_en:1, rd_en:0, cs:0, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:123, address_in:6, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:249, address_in:9, wr_en:0, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:6, wr_en:0, rd_en:1, cs:1, data_out:213}
+# op data at score is '{data_in:0, address_in:6, wr_en:0, rd_en:1, cs:1, data_out:213}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:254, 13:3, 14:41, 15:181 } and size is 16
+# addr = 6
+# time: 1070 ns, data matched !! exp=213 act=213
+#  
+# packet at driver is '{data_in:197, address_in:6, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:78, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:6, wr_en:0, rd_en:1, cs:1, data_out:213}
+# op data at score is '{data_in:0, address_in:6, wr_en:0, rd_en:1, cs:1, data_out:213}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:254, 13:3, 14:41, 15:181 } and size is 16
+# addr = 6
+# time: 1090 ns, data matched !! exp=213 act=213
+#  
+# packet at driver is '{data_in:106, address_in:13, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip mon data (from vif) is '{data_in:78, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:78, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# packet received from op mon to coverage is '{data_in:0, address_in:14, wr_en:0, rd_en:1, cs:1, data_out:41}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# ip data at score is '{data_in:78, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:47, 2:216, 3:138, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:78, 13:3, 14:41, 15:181 } and size is 16
+# packet at driver is '{data_in:207, address_in:9, wr_en:1, rd_en:1, cs:0, data_out:0}
+# ip mon data (from vif) is '{data_in:106, address_in:13, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:106, address_in:13, wr_en:1, rd_en:0, cs:1, data_out:0}
+# packet received from op mon to coverage is '{data_in:0, address_in:15, wr_en:0, rd_en:1, cs:1, data_out:181}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# ip data at score is '{data_in:106, address_in:13, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:47, 2:216, 3:138, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:78, 13:106, 14:41, 15:181 } and size is 16
+# packet at driver is '{data_in:140, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:254, address_in:11, wr_en:1, rd_en:0, cs:0, data_out:0}
+# ip mon data (from vif) is '{data_in:140, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:140, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# packet received from op mon to coverage is '{data_in:0, address_in:6, wr_en:0, rd_en:1, cs:1, data_out:213}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# ip data at score is '{data_in:140, address_in:12, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:47, 2:216, 3:138, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:140, 13:106, 14:41, 15:181 } and size is 16
+# packet at driver is '{data_in:3, address_in:5, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:22, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:5, wr_en:0, rd_en:1, cs:1, data_out:57}
+# op data at score is '{data_in:0, address_in:5, wr_en:0, rd_en:1, cs:1, data_out:57}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:254, 13:3, 14:41, 15:181 } and size is 16
+# addr = 5
+# time: 1150 ns, data matched !! exp=57 act=57
+#  
+# packet at driver is '{data_in:121, address_in:11, wr_en:0, rd_en:0, cs:0, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:47}
+# op data at score is '{data_in:0, address_in:1, wr_en:0, rd_en:1, cs:1, data_out:47}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:254, 13:3, 14:41, 15:181 } and size is 16
+# addr = 1
+# time: 1160 ns, data matched !! exp=47 act=47
+#  
+# packet at driver is '{data_in:244, address_in:0, wr_en:0, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:71, address_in:1, wr_en:0, rd_en:1, cs:0, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:50, address_in:8, wr_en:1, rd_en:0, cs:0, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:163, address_in:12, wr_en:0, rd_en:1, cs:0, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:219, address_in:0, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:36, address_in:15, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:0, wr_en:0, rd_en:1, cs:1, data_out:230}
+# op data at score is '{data_in:0, address_in:0, wr_en:0, rd_en:1, cs:1, data_out:230}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:254, 13:3, 14:41, 15:181 } and size is 16
+# addr = 0
+# time: 1220 ns, data matched !! exp=230 act=230
+#  
+# packet at driver is '{data_in:152, address_in:13, wr_en:1, rd_en:1, cs:0, data_out:0}
+# ip mon data (from vif) is '{data_in:36, address_in:15, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:36, address_in:15, wr_en:1, rd_en:0, cs:1, data_out:0}
+# packet received from op mon to coverage is '{data_in:0, address_in:6, wr_en:0, rd_en:1, cs:1, data_out:213}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# ip data at score is '{data_in:36, address_in:15, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:47, 2:216, 3:138, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:140, 13:106, 14:41, 15:36 } and size is 16
+# packet at driver is '{data_in:120, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:109, address_in:2, wr_en:1, rd_en:0, cs:0, data_out:0}
+# ip mon data (from vif) is '{data_in:120, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# op filter
+# packet received from ip mon to coverage is '{data_in:120, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# packet received from op mon to coverage is '{data_in:0, address_in:5, wr_en:0, rd_en:1, cs:1, data_out:57}
+# functional coverage using get coverage is 70
+# functional coverage using get instant coverage is 70
+# ip data at score is '{data_in:120, address_in:11, wr_en:1, rd_en:0, cs:1, data_out:0}
+# ip associate array is '{0:230, 1:47, 2:216, 3:138, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:120, 12:140, 13:106, 14:41, 15:36 } and size is 16
+# packet at driver is '{data_in:25, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:217, address_in:11, wr_en:1, rd_en:1, cs:0, data_out:0}
+# ip filter
+# op mon data (from vif) is '{data_in:0, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:140}
+# op data at score is '{data_in:0, address_in:12, wr_en:0, rd_en:1, cs:1, data_out:140}
+# op associate array is '{0:230, 1:47, 2:216, 3:0, 4:220, 5:57, 6:213, 7:37, 8:219, 9:215, 10:234, 11:217, 12:140, 13:3, 14:41, 15:181 } and size is 16
+# addr = 12
+# time: 1270 ns, data matched !! exp=140 act=140
+#  
+# packet at driver is '{data_in:83, address_in:4, wr_en:0, rd_en:1, cs:0, data_out:0}
+# ip filter
+# op filter
+# packet at driver is '{data_in:165, address_in:13, wr_en:1, rd_en:1, cs:0, data_out:0}
+# ip filter
+# op filter
+# ip filter
+# op filter
+# ip filter
+# op filter
+# ip filter
+# op filter
+# ip filter
+# op filter
+# ip filter
+# op filter
+# ** Note: $finish    : testbench.sv(56)
+#    Time: 1350 ns  Iteration: 0  Instance: /tb_top
+# test cases passed !!  Pass count =53 and fail count=2
+# End time: 10:12:45 on Jan 11,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+End time: 10:12:45 on Jan 11,2025, Elapsed time: 0:00:01
+*** Summary *********************************************
+    qrun: Errors:   0, Warnings:   0
+    vlog: Errors:   0, Warnings:   4
+    vopt: Errors:   0, Warnings:   5
+    vsim: Errors:   0, Warnings:   0
+  Totals: Errors:   0, Warnings:   9
